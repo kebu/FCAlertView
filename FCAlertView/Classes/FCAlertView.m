@@ -54,6 +54,8 @@
         alertButtons = [[NSMutableArray alloc] init];
         alertTextFields = [[NSMutableArray alloc] init];
         alertTextFieldHolder = [[NSMutableArray alloc] init];
+        alertCustomFields = [[NSMutableArray alloc] init];
+        alertCustomFieldHolder = [[NSMutableArray alloc] init];
         
         _numberOfButtons = 0;
         _autoHideSeconds = 0;
@@ -326,6 +328,17 @@
                                     result.width - defaultSpacing,
                                     alertViewFrame.size.height);
     
+    if (alertCustomFields.count > 0)
+        alertViewFrame = CGRectMake(self.frame.size.width/2 - ((result.width - defaultSpacing)/2),
+                                    self.frame.size.height/2 - ((alertViewFrame.size.height + 45*(MIN(alertCustomFields.count,4)))/2),
+                                    result.width - defaultSpacing,
+                                    alertViewFrame.size.height + 45*(MIN(alertCustomFields.count,4)));
+    else
+        alertViewFrame = CGRectMake(self.frame.size.width/2 - ((result.width - defaultSpacing)/2),
+                                    self.frame.size.height/2 - ((alertViewFrame.size.height - 50 + 140)/2),
+                                    result.width - defaultSpacing,
+                                    alertViewFrame.size.height);
+    
     if (alertTypeRatingStars || alertTypeRatingHearts)
         alertViewFrame = CGRectMake(self.frame.size.width/2 - ((result.width - defaultSpacing)/2),
                                     self.frame.size.height/2 - ((alertViewFrame.size.height - 50 + 140)/2),
@@ -552,6 +565,32 @@
             
         }
         
+    }
+    
+    if (alertCustomFields.count > 0) {
+        for (int i = 0; i < MIN(alertCustomFields.count,4); i++) {
+            UIView *tf = [alertCustomFields objectAtIndex:i][@"field"];
+            tf.frame = CGRectMake(12.5, descriptionLabel.frame.size.height + descriptionLabel.frame.origin.y + 10.5 + 45*(i + MIN(alertCustomFields.count,4)), alertViewFrame.size.width - 25, 40);
+        
+            if (tf.layer.cornerRadius == 0)
+                tf.layer.cornerRadius = 3.0f;
+            tf.layer.masksToBounds = YES;
+            tf.layer.borderColor = [[UIColor colorWithWhite:217.0f/255.0f alpha:1.0] CGColor];
+            
+            if (tf.layer.borderWidth == 0)
+                tf.layer.borderWidth = 1.0f;
+            
+            tf.tag = i;
+            
+            if (self.darkTheme)
+                tf.backgroundColor = [UIColor colorWithWhite:227.0f/255.0f alpha:1.0];
+            else
+                tf.backgroundColor = [UIColor whiteColor];
+            
+            [alertCustomFieldHolder addObject:tf];
+            
+            [alertView addSubview:tf];
+        }
     }
     
     // BUTTON(S) VIEW - Section containing all Buttons
@@ -1597,6 +1636,16 @@
         
     }
     
+    for (int i = 0; i < alertCustomFields.count; i ++) {
+        FCTextReturnBlock textReturnBlock = [[alertCustomFields objectAtIndex:i] objectForKey:@"action"];
+        UIView *cf = [alertCustomFieldHolder objectAtIndex:i];
+        SEL selector = NSSelectorFromString(@"stringValue");
+        if (textReturnBlock && [cf respondsToSelector:selector]) {
+            textReturnBlock([cf performSelector:selector]);
+        }
+    }
+    
+    
     // Handling Button Block
     
     UIButton *clickedButton = (UIButton*)sender;
@@ -1882,6 +1931,26 @@
         item5.tintColor = self.colorScheme;
     }
     
+}
+
+- (void)addCustomField:(UIView *)field andPlaceholder:(NSString *)placeholder andTextReturnBlock:(FCTextReturnBlock)textReturn {
+    
+//    if (placeholder == nil)
+//        placeholder = @"";
+    
+    SEL selector = NSSelectorFromString(@"setPlaceholder:");
+    if ([field respondsToSelector:selector]) {
+        [field performSelector:selector withObject:placeholder];
+    }
+    
+    if (textReturn != nil)
+        [alertCustomFields addObject:@{@"field" : field,
+                                       @"placeholder" : placeholder ? placeholder : @"",
+                                       @"action" : textReturn}];
+    else
+        [alertCustomFields addObject:@{@"field" : field,
+                                       @"placeholder" : placeholder ? placeholder : @"",
+                                       @"action" : @0}];
 }
 
 @end
