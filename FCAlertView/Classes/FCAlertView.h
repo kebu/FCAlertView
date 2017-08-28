@@ -36,6 +36,8 @@
     NSMutableArray *alertButtons;
     NSMutableArray *alertTextFields;
     NSMutableArray *alertTextFieldHolder;
+    NSMutableArray *alertCustomFields;
+    NSMutableArray *alertCustomFieldHolder;
     NSInteger alertViewWithVector;
     NSString *doneTitle;
     UIImage *vectorImage;
@@ -177,6 +179,9 @@ typedef void (^FCTextReturnBlock)(NSString *text);
 - (void)addTextFieldWithPlaceholder:(NSString *)placeholder andTextReturnBlock:(FCTextReturnBlock)textReturn;
 - (void)addTextFieldWithCustomTextField:(UITextField *)field andPlaceholder:(NSString *)placeholder andTextReturnBlock:(FCTextReturnBlock)textReturn;
 
+// Alert CustomField
+- (void)addCustomField:(UIView *)field andPlaceholder:(NSString *)placeholder andTextReturnBlock:(FCTextReturnBlock)textReturn;
+
 // Color Schemes
 
 @property (nonatomic, retain) UIColor * colorScheme;
@@ -218,5 +223,12 @@ typedef void (^FCTextReturnBlock)(NSString *text);
 - (void)FCAlertViewDismissed:(FCAlertView *)alertView;
 - (void)FCAlertViewWillAppear:(FCAlertView *)alertView;
 - (void)FCAlertDoneButtonClicked:(FCAlertView *)alertView;
+
+@end
+
+@protocol FCAlertCustomFieldProtocol <NSObject>
+
+- (NSString *) stringValue;
+- (void) setPlaceholder:(NSString *)placeholder;
 
 @end
