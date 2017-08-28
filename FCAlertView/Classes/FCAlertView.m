@@ -1639,9 +1639,8 @@
     for (int i = 0; i < alertCustomFields.count; i ++) {
         FCTextReturnBlock textReturnBlock = [[alertCustomFields objectAtIndex:i] objectForKey:@"action"];
         UIView *cf = [alertCustomFieldHolder objectAtIndex:i];
-        SEL selector = NSSelectorFromString(@"stringValue");
-        if (textReturnBlock && [cf respondsToSelector:selector]) {
-            textReturnBlock([cf performSelector:selector]);
+        if (textReturnBlock && [cf respondsToSelector:@selector(FCAlertCustomFieldProtocolStringValue)]) {
+            textReturnBlock([cf performSelector:@selector(FCAlertCustomFieldProtocolStringValue)]);
         }
     }
     
@@ -1702,6 +1701,14 @@
         if (textReturnBlock)
             textReturnBlock(tf.text);
         
+    }
+    
+    for (int i = 0; i < alertCustomFields.count; i ++) {
+        FCTextReturnBlock textReturnBlock = [[alertCustomFields objectAtIndex:i] objectForKey:@"action"];
+        UIView *cf = [alertCustomFieldHolder objectAtIndex:i];
+        if (textReturnBlock && [cf respondsToSelector:@selector(FCAlertCustomFieldProtocolStringValue)]) {
+            textReturnBlock([cf performSelector:@selector(FCAlertCustomFieldProtocolStringValue)]);
+        }
     }
     
     // Handling Done Button Block
@@ -1935,12 +1942,8 @@
 
 - (void)addCustomField:(UIView *)field andPlaceholder:(NSString *)placeholder andTextReturnBlock:(FCTextReturnBlock)textReturn {
     
-//    if (placeholder == nil)
-//        placeholder = @"";
-    
-    SEL selector = NSSelectorFromString(@"setPlaceholder:");
-    if ([field respondsToSelector:selector]) {
-        [field performSelector:selector withObject:placeholder];
+    if ([field respondsToSelector:@selector(FCAlertCustomFieldProtocolSetPlaceholder:)]) {
+        [field performSelector:@selector(FCAlertCustomFieldProtocolSetPlaceholder:) withObject:placeholder];
     }
     
     if (textReturn != nil)
