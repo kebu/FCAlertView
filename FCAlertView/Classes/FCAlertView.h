@@ -228,7 +228,7 @@ typedef void (^FCTextReturnBlock)(NSString *text);
 
 @protocol FCAlertCustomFieldProtocol <NSObject>
 
-- (NSString *) stringValue;
-- (void) setPlaceholder:(NSString *)placeholder;
+- (NSString *)FCAlertCustomFieldProtocolStringValue;
+- (void)FCAlertCustomFieldProtocolSetPlaceholder:(NSString *)placeholder;
 
 @end
