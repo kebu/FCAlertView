@@ -28,26 +28,26 @@
         
         // ALERTVIEW BACKGROUND - Setting up Background View
         
-        _alertBackground = [[UIView alloc] init];
-        _alertBackground.frame = CGRectMake(0,
+        self.alertBackground = [[UIView alloc] init];
+        self.alertBackground.frame = CGRectMake(0,
                                             0,
                                             result.width,
                                             result.height);
-        _alertBackground.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.35];
+        self.alertBackground.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.35];
         
-        [self addSubview:_alertBackground];
+        [self addSubview:self.alertBackground];
         
         // PRESET FLAT COLORS - Setting up RGB of Flat Colors - Put in another file? REMOVE
         
-        _flatTurquoise = [UIColor colorWithRed:26.0/255.0f green:188.0/255.0f blue:156.0/255.0f alpha:1.0];
-        _flatGreen = [UIColor colorWithRed:39.0/255.0f green:174.0/255.0f blue:96.0/255.0f alpha:1.0];
-        _flatBlue = [UIColor colorWithRed:41.0/255.0f green:128.0/255.0f blue:185.0/255.0f alpha:1.0];
-        _flatMidnight = [UIColor colorWithRed:44.0/255.0f green:62.0/255.0f blue:80.0/255.0f alpha:1.0];
-        _flatPurple = [UIColor colorWithRed:142.0/255.0f green:68.0/255.0f blue:173.0/255.0f alpha:1.0];
-        _flatOrange = [UIColor colorWithRed:243.0/255.0f green:156.0/255.0f blue:18.0/255.0f alpha:1.0];
-        _flatRed = [UIColor colorWithRed:192.0/255.0f green:57.0/255.0f blue:43.0/255.0f alpha:1.0];
-        _flatSilver = [UIColor colorWithRed:189.0/255.0f green:195.0/255.0f blue:199.0/255.0f alpha:1.0];
-        _flatGray = [UIColor colorWithRed:127.0/255.0f green:140.0/255.0f blue:141.0/255.0f alpha:1.0];
+        self.flatTurquoise = [UIColor colorWithRed:26.0/255.0f green:188.0/255.0f blue:156.0/255.0f alpha:1.0];
+        self.flatGreen = [UIColor colorWithRed:39.0/255.0f green:174.0/255.0f blue:96.0/255.0f alpha:1.0];
+        self.flatBlue = [UIColor colorWithRed:41.0/255.0f green:128.0/255.0f blue:185.0/255.0f alpha:1.0];
+        self.flatMidnight = [UIColor colorWithRed:44.0/255.0f green:62.0/255.0f blue:80.0/255.0f alpha:1.0];
+        self.flatPurple = [UIColor colorWithRed:142.0/255.0f green:68.0/255.0f blue:173.0/255.0f alpha:1.0];
+        self.flatOrange = [UIColor colorWithRed:243.0/255.0f green:156.0/255.0f blue:18.0/255.0f alpha:1.0];
+        self.flatRed = [UIColor colorWithRed:192.0/255.0f green:57.0/255.0f blue:43.0/255.0f alpha:1.0];
+        self.flatSilver = [UIColor colorWithRed:189.0/255.0f green:195.0/255.0f blue:199.0/255.0f alpha:1.0];
+        self.flatGray = [UIColor colorWithRed:127.0/255.0f green:140.0/255.0f blue:141.0/255.0f alpha:1.0];
         
         // CUSTOMIZATIONS - Setting Default Customization Settings & Checks
         
@@ -57,23 +57,23 @@
         alertCustomFields = [[NSMutableArray alloc] init];
         alertCustomFieldHolder = [[NSMutableArray alloc] init];
         
-        _numberOfButtons = 0;
-        _autoHideSeconds = 0;
-        _cornerRadius = 18.0f;
+        self.numberOfButtons = 0;
+        self.autoHideSeconds = 0;
+        self.cornerRadius = 18.0f;
         
-        _dismissOnOutsideTouch = NO;
-        _hideAllButtons = NO;
-        _hideDoneButton = NO;
-        _avoidCustomImageTint = NO;
-        _blurBackground = NO;
-        _bounceAnimations = NO;
-        _darkTheme = NO;
-        _detachButtons = NO;
-        _fullCircleCustomImage = NO;
-        _hideSeparatorLineView = NO;
-        _customImageScale = 1;
-        _titleFont = [UIFont systemFontOfSize:18.0f weight:UIFontWeightMedium];
-        _subtitleFont = nil;
+        self.dismissOnOutsideTouch = NO;
+        self.hideAllButtons = NO;
+        self.hideDoneButton = NO;
+        self.avoidCustomImageTint = NO;
+        self.blurBackground = NO;
+        self.bounceAnimations = NO;
+        self.darkTheme = NO;
+        self.detachButtons = NO;
+        self.fullCircleCustomImage = NO;
+        self.hideSeparatorLineView = NO;
+        self.customImageScale = 1;
+        self.titleFont = [UIFont systemFontOfSize:18.0f weight:UIFontWeightMedium];
+        self.subtitleFont = nil;
         defaultSpacing = [self configureAVWidth];
         defaultHeight = [self configureAVHeight];
         
@@ -87,7 +87,7 @@
 
 - (CGFloat) configureAVWidth {
     
-    if (_customSpacing == 0) {
+    if (self.customSpacing == 0) {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
             CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -125,16 +125,16 @@
         }
     }
     
-    return _customSpacing;
+    return self.customSpacing;
     
 }
 
 - (CGFloat) configureAVHeight {
     
-    if (_customHeight == 0) {
+    if (self.customHeight == 0) {
         return 200.0f;
     } else {
-        return _customHeight;
+        return self.customHeight;
     }
 }
 
@@ -143,7 +143,7 @@
 
 - (void) checkCustomizationValid {
     
-    if (_darkTheme) {
+    if (self.darkTheme) {
         if (self.titleColor == nil) {
             self.titleColor = [UIColor whiteColor];
         }
@@ -160,8 +160,8 @@
         doneTitle = @"OK";
     }
     
-    if (_cornerRadius == 0.0f)
-        _cornerRadius = 18.0f;
+    if (self.cornerRadius == 0.0f)
+        self.cornerRadius = 18.0f;
     
     if (vectorImage != nil)
         alertViewWithVector = 1;
@@ -172,11 +172,11 @@
 
 - (void) safetyCloseCheck {
     
-    if (_hideDoneButton || _hideAllButtons) {
+    if (self.hideDoneButton || self.hideAllButtons) {
         
-        if (_autoHideSeconds == 0 && !_overrideForcedDismiss) {
+        if (self.autoHideSeconds == 0 && !self.overrideForcedDismiss) {
             
-            _dismissOnOutsideTouch = YES;
+            self.dismissOnOutsideTouch = YES;
             
             NSLog(@"Forced Dismiss on Outside Touch");
             
@@ -188,13 +188,13 @@
 
 #pragma mark - Title Validation
 -(BOOL)hasTitle {
-    return (_title != nil && _title.length > 0) ||
-    (_attributedTitle != nil && _attributedTitle.length > 0);
+    return (self.title != nil && self.title.length > 0) ||
+    (self.attributedTitle != nil && self.attributedTitle.length > 0);
 }
 
 -(BOOL)hasSubTitle {
-    return (_subTitle != nil && _subTitle.length > 0) ||
-    (_attributedSubTitle != nil && _attributedSubTitle.length > 0);
+    return (self.subTitle != nil && self.subTitle.length > 0) ||
+    (self.attributedSubTitle != nil && self.attributedSubTitle.length > 0);
 }
 
 #pragma mark - Touch Events
@@ -253,13 +253,13 @@
     
     UITouch *touch = [touches anyObject];
     
-    CGPoint touchPoint = [touch locationInView:_alertBackground];
+    CGPoint touchPoint = [touch locationInView:self.alertBackground];
     CGPoint touchPoint2 = [touch locationInView:alertViewContents];
     
-    BOOL isPointInsideBackview = [_alertBackground pointInside:touchPoint withEvent:nil];
+    BOOL isPointInsideBackview = [self.alertBackground pointInside:touchPoint withEvent:nil];
     BOOL isPointInsideAlertView = [alertViewContents pointInside:touchPoint2 withEvent:nil];
     
-    if (_dismissOnOutsideTouch && isPointInsideBackview && !isPointInsideAlertView)
+    if (self.dismissOnOutsideTouch && isPointInsideBackview && !isPointInsideAlertView)
         [self dismissAlertView];
     
     if (alertTextFields.count > 0 && isPointInsideBackview && !isPointInsideAlertView)
@@ -297,20 +297,20 @@
                                     result.width - defaultSpacing,
                                     alertViewFrame.size.height - 10);
     
-    if (_hideAllButtons) { // Frames for when AlertView has hidden all buttons
+    if (self.hideAllButtons) { // Frames for when AlertView has hidden all buttons
         alertViewFrame = CGRectMake(self.frame.size.width/2 - ((result.width - defaultSpacing)/2),
                                     self.frame.size.height/2 - ((alertViewFrame.size.height - 50)/2),
                                     result.width - defaultSpacing,
                                     alertViewFrame.size.height - 45);
         
     } else {
-        if (_hideDoneButton && _numberOfButtons == 0) { // Frames for when AlertView has hidden the DONE/DISMISS button
+        if (self.hideDoneButton && self.numberOfButtons == 0) { // Frames for when AlertView has hidden the DONE/DISMISS button
             alertViewFrame = CGRectMake(self.frame.size.width/2 - ((result.width - defaultSpacing)/2),
                                         self.frame.size.height/2 - ((alertViewFrame.size.height - 50)/2),
                                         result.width - defaultSpacing,
                                         alertViewFrame.size.height - 45);
         }
-        if (!_hideDoneButton && _numberOfButtons >= 2) // Frames for AlertView with 2 added buttons (vertical buttons)
+        if (!self.hideDoneButton && self.numberOfButtons >= 2) // Frames for AlertView with 2 added buttons (vertical buttons)
             alertViewFrame = CGRectMake(self.frame.size.width/2 - ((result.width - defaultSpacing)/2),
                                         self.frame.size.height/2 - ((alertViewFrame.size.height - 50 + 140)/2),
                                         result.width - defaultSpacing,
@@ -372,15 +372,15 @@
                                                                           descriptionLevel + (alertViewWithVector * 30),
                                                                           alertViewFrame.size.width - 50.0f,
                                                                           60.0f)];
-    if (_subtitleFont != nil)
+    if (self.subtitleFont != nil)
         descriptionLabel.font = self.subtitleFont;
-    else if (_title != nil)
+    else if (self.title != nil)
         descriptionLabel.font = [UIFont systemFontOfSize:15.0f weight:UIFontWeightLight];
     else
         descriptionLabel.font = [UIFont systemFontOfSize:16.0f weight:UIFontWeightRegular];
     
     descriptionLabel.textColor = self.subTitleColor;
-    if (_subTitle == nil)
+    if (self.subTitle == nil)
         descriptionLabel.attributedText = self.attributedSubTitle;
     else
         descriptionLabel.text = self.subTitle;
@@ -400,7 +400,7 @@
     titleLabel.font = self.titleFont;
     titleLabel.numberOfLines = 1;
     titleLabel.textColor = self.titleColor;
-    if (_title == nil)
+    if (self.title == nil)
         titleLabel.attributedText = self.attributedTitle;
     else
         titleLabel.text = self.title;
@@ -465,8 +465,8 @@
         if (!self.alertBackgroundColor)
             alertView.backgroundColor = [UIColor whiteColor];
         else
-            alertView.backgroundColor = _alertBackgroundColor;
-        if (_darkTheme)
+            alertView.backgroundColor = self.alertBackgroundColor;
+        if (self.darkTheme)
             alertView.backgroundColor = [UIColor colorWithWhite:48.0f/255.0f alpha:1.0];
     }
     
@@ -495,8 +495,8 @@
     if (!self.alertBackgroundColor)
         fillLayer.fillColor = [UIColor whiteColor].CGColor;
     else
-        fillLayer.fillColor = _alertBackgroundColor.CGColor;
-    if (_darkTheme)
+        fillLayer.fillColor = self.alertBackgroundColor.CGColor;
+    if (self.darkTheme)
         fillLayer.fillColor = [UIColor colorWithWhite:48.0f/255.0f alpha:1.0].CGColor;
     fillLayer.opacity = 1.0;
     
@@ -511,7 +511,7 @@
                                                                          2)];
     
     separatorLineView.backgroundColor = [UIColor colorWithWhite:100.0f/255.0f alpha:1.0]; // set color as you want.
-    if (_darkTheme)
+    if (self.darkTheme)
         separatorLineView.backgroundColor = [UIColor colorWithWhite:58.0f/255.0f alpha:1.0];
     
     // TEXTFIELD VIEW - Section with TextField
@@ -595,27 +595,27 @@
     
     // BUTTON(S) VIEW - Section containing all Buttons
     
-    if (_numberOfButtons == 0) { // View only contains DONE/DISMISS Button
+    if (self.numberOfButtons == 0) { // View only contains DONE/DISMISS Button
         
         UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        if (_colorScheme == nil) {
+        if (self.colorScheme == nil) {
             doneButton.backgroundColor = [UIColor whiteColor];
-            if (_detachButtons)
+            if (self.detachButtons)
                 doneButton.backgroundColor = [UIColor colorWithWhite:228.0f/255.0f alpha:1.0];
-            if (_darkTheme)
+            if (self.darkTheme)
                 doneButton.backgroundColor = [UIColor colorWithWhite:78.0f/255.0f alpha:1.0];
         } else {
-            doneButton.backgroundColor = _colorScheme;
+            doneButton.backgroundColor = self.colorScheme;
         }
         
-        if (_doneButtonHighlightedBackgroundColor)
-            [doneButton setBackgroundImage:[self imageWithColor:_doneButtonHighlightedBackgroundColor] forState:UIControlStateHighlighted];
+        if (self.doneButtonHighlightedBackgroundColor)
+            [doneButton setBackgroundImage:[self imageWithColor:self.doneButtonHighlightedBackgroundColor] forState:UIControlStateHighlighted];
         
         doneButton.frame = CGRectMake(0,
                                       alertViewFrame.size.height - 45,
                                       alertViewFrame.size.width,
                                       45);
-        if (_detachButtons) {
+        if (self.detachButtons) {
             doneButton.frame = CGRectMake(8,
                                           alertViewFrame.size.height - 50,
                                           alertViewFrame.size.width - 16,
@@ -631,35 +631,35 @@
         doneButton.titleLabel.font = [UIFont systemFontOfSize:18.0f weight:UIFontWeightMedium];
         if (self.doneButtonCustomFont)
             doneButton.titleLabel.font = self.doneButtonCustomFont;
-        if (_colorScheme != nil || _darkTheme)
+        if (self.colorScheme != nil || self.darkTheme)
             doneButton.tintColor = [UIColor whiteColor];
         if (self.doneButtonTitleColor != nil)
             doneButton.tintColor = self.doneButtonTitleColor;
         
-        if (!_hideAllButtons && !_hideDoneButton)
+        if (!self.hideAllButtons && !self.hideDoneButton)
             [alertView addSubview:doneButton];
         
-    } else if (_numberOfButtons == 1) { // View also contains OTHER (One) Button
+    } else if (self.numberOfButtons == 1) { // View also contains OTHER (One) Button
         
         UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        if (_colorScheme == nil) {
+        if (self.colorScheme == nil) {
             doneButton.backgroundColor = [UIColor whiteColor];
-            if (_detachButtons)
+            if (self.detachButtons)
                 doneButton.backgroundColor = [UIColor colorWithWhite:228.0f/255.0f alpha:1.0];
-            if (_darkTheme)
+            if (self.darkTheme)
                 doneButton.backgroundColor = [UIColor colorWithWhite:78.0f/255.0f alpha:1.0];
         } else {
-            doneButton.backgroundColor = _colorScheme;
+            doneButton.backgroundColor = self.colorScheme;
         }
         
-        if (_doneButtonHighlightedBackgroundColor)
-            [doneButton setBackgroundImage:[self imageWithColor:_doneButtonHighlightedBackgroundColor] forState:UIControlStateHighlighted];
+        if (self.doneButtonHighlightedBackgroundColor)
+            [doneButton setBackgroundImage:[self imageWithColor:self.doneButtonHighlightedBackgroundColor] forState:UIControlStateHighlighted];
         
         doneButton.frame = CGRectMake(alertViewFrame.size.width/2,
                                       alertViewFrame.size.height - 45,
                                       alertViewFrame.size.width/2,
                                       45);
-        if (_detachButtons) {
+        if (self.detachButtons) {
             doneButton.frame = CGRectMake(alertViewFrame.size.width/2 + 6,
                                           doneButton.frame.origin.y - 5,
                                           doneButton.frame.size.width - 16,
@@ -675,34 +675,34 @@
         doneButton.titleLabel.font = [UIFont systemFontOfSize:16.0f weight:UIFontWeightMedium];
         if (self.doneButtonCustomFont)
             doneButton.titleLabel.font = self.doneButtonCustomFont;
-        if (_colorScheme != nil || _darkTheme)
+        if (self.colorScheme != nil || self.darkTheme)
             doneButton.tintColor = [UIColor whiteColor];
         if (self.doneButtonTitleColor != nil)
             doneButton.tintColor = self.doneButtonTitleColor;
         
         UIButton *otherButton = [UIButton buttonWithType:UIButtonTypeSystem];
         otherButton.backgroundColor = [UIColor whiteColor];
-        if (_detachButtons)
+        if (self.detachButtons)
             otherButton.backgroundColor = [UIColor colorWithWhite:228.0f/255.0f alpha:1.0];
-        if (_darkTheme)
+        if (self.darkTheme)
             otherButton.backgroundColor = [UIColor colorWithWhite:78.0f/255.0f alpha:1.0];
         if (self.firstButtonBackgroundColor != nil)
             otherButton.backgroundColor = self.firstButtonBackgroundColor;
         
-        if (_firstButtonHighlightedBackgroundColor)
-            [otherButton setBackgroundImage:[self imageWithColor:_firstButtonHighlightedBackgroundColor] forState:UIControlStateHighlighted];
+        if (self.firstButtonHighlightedBackgroundColor)
+            [otherButton setBackgroundImage:[self imageWithColor:self.firstButtonHighlightedBackgroundColor] forState:UIControlStateHighlighted];
         
         otherButton.frame = CGRectMake(0,
                                        alertViewFrame.size.height - 45,
                                        alertViewFrame.size.width/2,
                                        45);
-        if (_hideDoneButton)
+        if (self.hideDoneButton)
             otherButton.frame = CGRectMake(0,
                                            alertViewFrame.size.height - 45,
                                            alertViewFrame.size.width,
                                            45);
         
-        if (_detachButtons) {
+        if (self.detachButtons) {
             otherButton.frame = CGRectMake(alertViewFrame.size.width/2 - otherButton.frame.size.width + 16 - 6,
                                            otherButton.frame.origin.y - 5,
                                            otherButton.frame.size.width - 16,
@@ -719,7 +719,7 @@
         if (self.firstButtonCustomFont)
             otherButton.titleLabel.font = self.firstButtonCustomFont;
         otherButton.tintColor = self.colorScheme;
-        if (self.colorScheme == nil && _darkTheme)
+        if (self.colorScheme == nil && self.darkTheme)
             otherButton.tintColor = [UIColor whiteColor];
         if (self.firstButtonTitleColor != nil)
             otherButton.tintColor = self.firstButtonTitleColor;
@@ -727,11 +727,11 @@
         otherButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         otherButton.titleLabel.minimumScaleFactor = 0.8;
         
-        if (!_hideAllButtons) {
+        if (!self.hideAllButtons) {
             [alertView addSubview:otherButton];
         }
         
-        if (!_hideAllButtons && !_hideDoneButton)
+        if (!self.hideAllButtons && !self.hideDoneButton)
             [alertView addSubview:doneButton];
         
         UIView *horizontalSeparator = [[UIView alloc] initWithFrame:CGRectMake(alertViewFrame.size.width/2 - 1,
@@ -740,12 +740,12 @@
                                                                                47)];
         
         horizontalSeparator.backgroundColor = [UIColor colorWithWhite:100.0f/255.0f alpha:1.0]; // set color as you want.
-        if (_darkTheme)
+        if (self.darkTheme)
             horizontalSeparator.backgroundColor = [UIColor colorWithWhite:58.0f/255.0f alpha:1.0];
         
         UIVisualEffect *blurEffect;
         blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-        if (_darkTheme)
+        if (self.darkTheme)
             blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
         
         UIVisualEffectView *visualEffectView3;
@@ -754,36 +754,36 @@
         visualEffectView3.userInteractionEnabled = NO;
         [horizontalSeparator addSubview:visualEffectView3];
         
-        if (!_hideAllButtons && !_hideDoneButton && !_detachButtons && !_hideSeparatorLineView) {
+        if (!self.hideAllButtons && !self.hideDoneButton && !self.detachButtons && !self.hideSeparatorLineView) {
             [alertView addSubview:horizontalSeparator];
         }
         
-    } else if (_numberOfButtons >= 2) { // View  contains TWO OTHER Buttons - First & Second Button
+    } else if (self.numberOfButtons >= 2) { // View  contains TWO OTHER Buttons - First & Second Button
         
         UIButton *firstButton = [UIButton buttonWithType:UIButtonTypeSystem];
         firstButton.backgroundColor = [UIColor whiteColor];
-        if (_detachButtons)
+        if (self.detachButtons)
             firstButton.backgroundColor = [UIColor colorWithWhite:228.0f/255.0f alpha:1.0];
-        if (_darkTheme)
+        if (self.darkTheme)
             firstButton.backgroundColor = [UIColor colorWithWhite:78.0f/255.0f alpha:1.0];
         if (self.firstButtonBackgroundColor != nil)
             firstButton.backgroundColor = self.firstButtonBackgroundColor;
         
-        if (_firstButtonHighlightedBackgroundColor)
-            [firstButton setBackgroundImage:[self imageWithColor:_firstButtonHighlightedBackgroundColor] forState:UIControlStateHighlighted];
+        if (self.firstButtonHighlightedBackgroundColor)
+            [firstButton setBackgroundImage:[self imageWithColor:self.firstButtonHighlightedBackgroundColor] forState:UIControlStateHighlighted];
         
         firstButton.frame = CGRectMake(0,
                                        alertViewFrame.size.height - 135,
                                        alertViewFrame.size.width,
                                        45);
         
-        if (_hideDoneButton)
+        if (self.hideDoneButton)
             firstButton.frame = CGRectMake(0,
                                            alertViewFrame.size.height - 45,
                                            alertViewFrame.size.width/2,
                                            45);
         
-        if (_detachButtons) {
+        if (self.detachButtons) {
             firstButton.frame = CGRectMake(firstButton.frame.origin.x + 8,
                                            firstButton.frame.origin.y - 5,
                                            firstButton.frame.size.width - 16,
@@ -800,7 +800,7 @@
         if (self.firstButtonCustomFont)
             firstButton.titleLabel.font = self.firstButtonCustomFont;
         firstButton.tintColor = self.colorScheme;
-        if (self.colorScheme == nil && _darkTheme)
+        if (self.colorScheme == nil && self.darkTheme)
             firstButton.tintColor = [UIColor whiteColor];
         if (self.firstButtonTitleColor != nil)
             firstButton.tintColor = self.firstButtonTitleColor;
@@ -811,27 +811,27 @@
         
         UIButton *secondButton = [UIButton buttonWithType:UIButtonTypeSystem];
         secondButton.backgroundColor = [UIColor whiteColor];
-        if (_detachButtons)
+        if (self.detachButtons)
             secondButton.backgroundColor = [UIColor colorWithWhite:228.0f/255.0f alpha:1.0];
-        if (_darkTheme)
+        if (self.darkTheme)
             secondButton.backgroundColor = [UIColor colorWithWhite:78.0f/255.0f alpha:1.0];
         if (self.secondButtonBackgroundColor != nil)
             secondButton.backgroundColor = self.secondButtonBackgroundColor;
         
-        if (_secondButtonHighlightedBackgroundColor)
-            [secondButton setBackgroundImage:[self imageWithColor:_secondButtonHighlightedBackgroundColor] forState:UIControlStateHighlighted];
+        if (self.secondButtonHighlightedBackgroundColor)
+            [secondButton setBackgroundImage:[self imageWithColor:self.secondButtonHighlightedBackgroundColor] forState:UIControlStateHighlighted];
         
         secondButton.frame = CGRectMake(0,
                                         alertViewFrame.size.height - 90,
                                         alertViewFrame.size.width,
                                         45);
-        if (_hideDoneButton)
+        if (self.hideDoneButton)
             secondButton.frame = CGRectMake(alertViewFrame.size.width/2,
                                             alertViewFrame.size.height - 45,
                                             alertViewFrame.size.width/2,
                                             45);
         
-        if (_detachButtons) {
+        if (self.detachButtons) {
             secondButton.frame = CGRectMake(secondButton.frame.origin.x + 8,
                                             secondButton.frame.origin.y - 5,
                                             secondButton.frame.size.width - 16,
@@ -848,7 +848,7 @@
         if (self.secondButtonCustomFont)
             secondButton.titleLabel.font = self.secondButtonCustomFont;
         secondButton.tintColor = self.colorScheme;
-        if (self.colorScheme == nil && _darkTheme)
+        if (self.colorScheme == nil && self.darkTheme)
             secondButton.tintColor = [UIColor whiteColor];
         if (self.secondButtonTitleColor != nil)
             secondButton.tintColor = self.secondButtonTitleColor;
@@ -858,24 +858,24 @@
         secondButton.tag = 1;
         
         UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        if (_colorScheme == nil) {
+        if (self.colorScheme == nil) {
             doneButton.backgroundColor = [UIColor whiteColor];
-            if (_detachButtons)
+            if (self.detachButtons)
                 doneButton.backgroundColor = [UIColor colorWithWhite:228.0f/255.0f alpha:1.0];
-            if (_darkTheme)
+            if (self.darkTheme)
                 doneButton.backgroundColor = [UIColor colorWithWhite:78.0f/255.0f alpha:1.0];
         } else {
-            doneButton.backgroundColor = _colorScheme;
+            doneButton.backgroundColor = self.colorScheme;
         }
         
-        if (_doneButtonHighlightedBackgroundColor)
-            [doneButton setBackgroundImage:[self imageWithColor:_doneButtonHighlightedBackgroundColor] forState:UIControlStateHighlighted];
+        if (self.doneButtonHighlightedBackgroundColor)
+            [doneButton setBackgroundImage:[self imageWithColor:self.doneButtonHighlightedBackgroundColor] forState:UIControlStateHighlighted];
         
         doneButton.frame = CGRectMake(0,
                                       alertViewFrame.size.height - 45,
                                       alertViewFrame.size.width,
                                       45);
-        if (_detachButtons) {
+        if (self.detachButtons) {
             doneButton.frame = CGRectMake(8,
                                           alertViewFrame.size.height - 50,
                                           alertViewFrame.size.width - 16,
@@ -891,17 +891,17 @@
         doneButton.titleLabel.font = [UIFont systemFontOfSize:18.0f weight:UIFontWeightMedium];
         if (self.doneButtonCustomFont)
             doneButton.titleLabel.font = self.doneButtonCustomFont;
-        if (_colorScheme != nil || _darkTheme)
+        if (self.colorScheme != nil || self.darkTheme)
             doneButton.tintColor = [UIColor whiteColor];
         if (self.doneButtonTitleColor != nil)
             doneButton.tintColor = self.doneButtonTitleColor;
         
-        if (!_hideAllButtons) {
+        if (!self.hideAllButtons) {
             [alertView addSubview:firstButton];
             [alertView addSubview:secondButton];
         }
         
-        if (!_hideAllButtons && !_hideDoneButton)
+        if (!self.hideAllButtons && !self.hideDoneButton)
             [alertView addSubview:doneButton];
         
         UIView *firstSeparator = [[UIView alloc] initWithFrame:CGRectMake(0,
@@ -909,25 +909,25 @@
                                                                           alertViewFrame.size.width,
                                                                           2)];
         firstSeparator.backgroundColor = [UIColor colorWithWhite:100.0f/255.0f alpha:1.0]; // set color as you want.
-        if (_darkTheme)
+        if (self.darkTheme)
             firstSeparator.backgroundColor = [UIColor colorWithWhite:58.0f/255.0f alpha:1.0];
         
         UIView *secondSeparator = [[UIView alloc] initWithFrame:CGRectMake(0,
                                                                            secondButton.frame.origin.y - 2,
                                                                            alertViewFrame.size.width,
                                                                            2)];
-        if (_hideDoneButton)
+        if (self.hideDoneButton)
             secondSeparator.frame = CGRectMake(alertViewFrame.size.width/2 - 1,
                                                secondButton.frame.origin.y,
                                                2,
                                                45);
         secondSeparator.backgroundColor = [UIColor colorWithWhite:100.0f/255.0f alpha:1.0]; // set color as you want.
-        if (_darkTheme)
+        if (self.darkTheme)
             secondSeparator.backgroundColor = [UIColor colorWithWhite:58.0f/255.0f alpha:1.0];
         
         UIVisualEffect *blurEffect;
         blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-        if (_darkTheme)
+        if (self.darkTheme)
             blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
         
         UIVisualEffectView *visualEffectView;
@@ -942,7 +942,7 @@
         visualEffectView2.userInteractionEnabled = NO;
         [secondSeparator addSubview:visualEffectView2];
         
-        if (!_hideAllButtons && !_detachButtons && !_hideSeparatorLineView) {
+        if (!self.hideAllButtons && !self.detachButtons && !self.hideSeparatorLineView) {
             [alertView addSubview:firstSeparator];
             [alertView addSubview:secondSeparator];
         }
@@ -951,7 +951,7 @@
     
     UIVisualEffect *blurEffect;
     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    if (_darkTheme)
+    if (self.darkTheme)
         blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     UIVisualEffectView *visualEffectView;
     visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
@@ -959,18 +959,18 @@
     visualEffectView.userInteractionEnabled = NO;
     [separatorLineView addSubview:visualEffectView];
     
-    if (!_fullCircleCustomImage) {
+    if (!self.fullCircleCustomImage) {
         circleLayer = [CAShapeLayer layer];
         [circleLayer setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(alertViewContents.frame.size.width/2 - 30.0f, -30.0f, 60.0f, 60.0f)] CGPath]];
         if (!self.alertBackgroundColor)
             [circleLayer setFillColor:[UIColor whiteColor].CGColor];
         else
-            [circleLayer setFillColor:_alertBackgroundColor.CGColor];
+            [circleLayer setFillColor:self.alertBackgroundColor.CGColor];
     }
     
-    if (_darkTheme)
+    if (self.darkTheme)
         circleLayer.fillColor = [UIColor colorWithWhite:48.0f/255.0f alpha:1.0].CGColor;
-    if ([alertType isEqualToString:@"Progress"] && _colorScheme != nil)
+    if ([alertType isEqualToString:@"Progress"] && self.colorScheme != nil)
         [circleLayer setFillColor:[self.colorScheme CGColor]];
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(alertViewContents.frame.size.width/2 - 30.0f, -30.0f, 60.0f, 60.0f)];
@@ -982,7 +982,7 @@
     
     UIImageView *alertViewVector;
     
-    if (_avoidCustomImageTint && alertType.length == 0) {
+    if (self.avoidCustomImageTint && alertType.length == 0) {
         alertViewVector = [[UIImageView alloc] init];
         alertViewVector.image = vectorImage;
     } else {
@@ -990,14 +990,14 @@
         alertViewVector.image = [vectorImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     
-    if (_fullCircleCustomImage)
-        _customImageScale = 2;
+    if (self.fullCircleCustomImage)
+        self.customImageScale = 2;
     
-    if (_customImageScale <= 0) {
-        _customImageScale = 1;
+    if (self.customImageScale <= 0) {
+        self.customImageScale = 1;
     }
     
-    CGFloat vectorSize = 30.0f * MIN(2, _customImageScale);
+    CGFloat vectorSize = 30.0f * MIN(2, self.customImageScale);
     
     alertViewVector.frame = CGRectMake(alertViewContents.frame.size.width/2 - (vectorSize/2),
                                        -(vectorSize/2) - 0.5,
@@ -1006,7 +1006,7 @@
     
     alertViewVector.contentMode = UIViewContentModeScaleAspectFit;
     alertViewVector.userInteractionEnabled = 0;
-    alertViewVector.tintColor = _colorScheme;
+    alertViewVector.tintColor = self.colorScheme;
     
     // VIEW BORDER - Rounding Corners of AlertView
     
@@ -1018,10 +1018,10 @@
     [alertViewContents addSubview:titleLabel];
     [alertViewContents addSubview:descriptionLabel];
     
-    if (!_hideAllButtons && !_hideSeparatorLineView) {
-        if (_numberOfButtons == 1 && !_detachButtons)
+    if (!self.hideAllButtons && !self.hideSeparatorLineView) {
+        if (self.numberOfButtons == 1 && !self.detachButtons)
             [alertViewContents addSubview:separatorLineView];
-        else if (!_hideDoneButton && !_detachButtons)
+        else if (!self.hideDoneButton && !self.detachButtons)
             [alertViewContents addSubview:separatorLineView];
     }
     
@@ -1035,25 +1035,25 @@
     
     // SCALING ALERTVIEW - Before Animation
     
-    if (!_animateAlertInFromTop && !_animateAlertInFromLeft && !_animateAlertInFromRight && !_animateAlertInFromBottom) {
+    if (!self.animateAlertInFromTop && !self.animateAlertInFromLeft && !self.animateAlertInFromRight && !self.animateAlertInFromBottom) {
         alertViewContents.transform = CGAffineTransformMakeScale(1.15, 1.15);
     } else {
-        if (_animateAlertInFromTop)
+        if (self.animateAlertInFromTop)
             alertViewContents.frame = CGRectMake(alertViewFrame.origin.x,
                                                  0 - alertViewFrame.size.height - 15,
                                                  alertViewFrame.size.width,
                                                  alertViewFrame.size.height);
-        if (_animateAlertInFromRight)
+        if (self.animateAlertInFromRight)
             alertViewContents.frame = CGRectMake(self.frame.size.width + alertViewFrame.size.width + 15,
                                                  alertViewFrame.origin.y,
                                                  alertViewFrame.size.width,
                                                  alertViewFrame.size.height);
-        if (_animateAlertInFromBottom)
+        if (self.animateAlertInFromBottom)
             alertViewContents.frame = CGRectMake(alertViewFrame.origin.x,
                                                  self.frame.size.height + alertViewFrame.size.height + 15,
                                                  alertViewFrame.size.width,
                                                  alertViewFrame.size.height);
-        if (_animateAlertInFromLeft)
+        if (self.animateAlertInFromLeft)
             alertViewContents.frame = CGRectMake(0 - alertViewFrame.size.width - 15,
                                                  alertViewFrame.origin.y,
                                                  alertViewFrame.size.width,
@@ -1137,7 +1137,7 @@
     [self.layer setShadowRadius:10.0f];
     [self.layer setShadowOffset:CGSizeMake(0.0f, 0.0f)];
     
-    if (_bounceAnimations) {
+    if (self.bounceAnimations) {
         
         UIInterpolatingMotionEffect *horizontalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
         horizontalMotionEffect.minimumRelativeValue = @(-22.5);
@@ -1228,7 +1228,7 @@
 }
 
 - (void) makeAlertTypeRateHearts:(FCRatingBlock)ratingBlock {
-    _ratingBlock = ratingBlock;
+    self.ratingBlock = ratingBlock;
     vectorImage = [self loadImageFromResourceBundle:@"heart.png"];
     alertViewWithVector = 1;
     alertTypeRatingHearts = 1;
@@ -1237,7 +1237,7 @@
 }
 
 - (void) makeAlertTypeRateStars:(FCRatingBlock)ratingBlock {
-    _ratingBlock = ratingBlock;
+    self.ratingBlock = ratingBlock;
     vectorImage = [self loadImageFromResourceBundle:@"star.png"];
     alertViewWithVector = 1;
     alertTypeRatingStars = 1;
@@ -1264,11 +1264,11 @@
     
     // Blur Effect
     
-    if (_blurBackground && NSClassFromString(@"UIVisualEffectView") != nil) {
+    if (self.blurBackground && NSClassFromString(@"UIVisualEffectView") != nil) {
         UIVisualEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         backgroundVisualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         backgroundVisualEffectView.frame = view.view.bounds;
-        _alertBackground.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5];
+        self.alertBackground.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5];
         [view.view addSubview:backgroundVisualEffectView];
     }
     
@@ -1283,11 +1283,11 @@
     
     // Blur Effect
     
-    if (_blurBackground && NSClassFromString(@"UIVisualEffectView") != nil) {
+    if (self.blurBackground && NSClassFromString(@"UIVisualEffectView") != nil) {
         UIVisualEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         backgroundVisualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         backgroundVisualEffectView.frame = window.bounds;
-        _alertBackground.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5];
+        self.alertBackground.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5];
         [window addSubview:backgroundVisualEffectView];
     }
     
@@ -1304,11 +1304,11 @@
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     
     // Blur Effect
-    if (_blurBackground && NSClassFromString(@"UIVisualEffectView") != nil) {
+    if (self.blurBackground && NSClassFromString(@"UIVisualEffectView") != nil) {
         UIVisualEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         backgroundVisualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         backgroundVisualEffectView.frame = window.bounds;
-        _alertBackground.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5];
+        self.alertBackground.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5];
         [window addSubview:backgroundVisualEffectView];
     }
     
@@ -1326,11 +1326,11 @@
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     
     // Blur Effect
-    if (_blurBackground && NSClassFromString(@"UIVisualEffectView") != nil) {
+    if (self.blurBackground && NSClassFromString(@"UIVisualEffectView") != nil) {
         UIVisualEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         backgroundVisualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         backgroundVisualEffectView.frame = window.bounds;
-        _alertBackground.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5];
+        self.alertBackground.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5];
         [window addSubview:backgroundVisualEffectView];
     }
     
@@ -1347,11 +1347,11 @@
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     
     // Blur Effect
-    if (_blurBackground && NSClassFromString(@"UIVisualEffectView") != nil) {
+    if (self.blurBackground && NSClassFromString(@"UIVisualEffectView") != nil) {
         UIVisualEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         backgroundVisualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         backgroundVisualEffectView.frame = window.bounds;
-        _alertBackground.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5];
+        self.alertBackground.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5];
         [window addSubview:backgroundVisualEffectView];
     }
     
@@ -1369,11 +1369,11 @@
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     
     // Blur Effect
-    if (_blurBackground && NSClassFromString(@"UIVisualEffectView") != nil) {
+    if (self.blurBackground && NSClassFromString(@"UIVisualEffectView") != nil) {
         UIVisualEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         backgroundVisualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         backgroundVisualEffectView.frame = window.bounds;
-        _alertBackground.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5];
+        self.alertBackground.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5];
         [window addSubview:backgroundVisualEffectView];
     }
     
@@ -1395,7 +1395,7 @@
         [alertButtons addObject:btnDict];
     }
     
-    _numberOfButtons = alertButtons.count;
+    self.numberOfButtons = alertButtons.count;
     doneTitle = done;
     
     if (!alertViewWithVector)
@@ -1420,25 +1420,25 @@
     
     [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.alpha = 1;
-        if (_bounceAnimations) {
-            if (!_animateAlertInFromTop && !_animateAlertInFromLeft && !_animateAlertInFromRight && !_animateAlertInFromBottom)
+        if (self.bounceAnimations) {
+            if (!self.animateAlertInFromTop && !self.animateAlertInFromLeft && !self.animateAlertInFromRight && !self.animateAlertInFromBottom)
                 alertViewContents.transform = CGAffineTransformMakeScale(0.95, 0.95);
-            if (_animateAlertInFromTop)
+            if (self.animateAlertInFromTop)
                 alertViewContents.frame = CGRectMake(alertViewFrame.origin.x,
                                                      alertViewFrame.origin.y + 7.5,
                                                      alertViewFrame.size.width,
                                                      alertViewFrame.size.height);
-            if (_animateAlertInFromRight)
+            if (self.animateAlertInFromRight)
                 alertViewContents.frame = CGRectMake(alertViewFrame.origin.x - 7.5,
                                                      alertViewFrame.origin.y,
                                                      alertViewFrame.size.width,
                                                      alertViewFrame.size.height);
-            if (_animateAlertInFromBottom)
+            if (self.animateAlertInFromBottom)
                 alertViewContents.frame = CGRectMake(alertViewFrame.origin.x,
                                                      alertViewFrame.origin.y - 7.5,
                                                      alertViewFrame.size.width,
                                                      alertViewFrame.size.height);
-            if (_animateAlertInFromLeft)
+            if (self.animateAlertInFromLeft)
                 alertViewContents.frame = CGRectMake(alertViewFrame.origin.x + 7.5,
                                                      alertViewFrame.origin.y,
                                                      alertViewFrame.size.width,
@@ -1452,9 +1452,9 @@
         }
         
     } completion:^(BOOL finished) {
-        if (_bounceAnimations)
+        if (self.bounceAnimations)
             [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                if (!_animateAlertInFromTop && !_animateAlertInFromLeft && !_animateAlertInFromRight && !_animateAlertInFromBottom)
+                if (!self.animateAlertInFromTop && !self.animateAlertInFromLeft && !self.animateAlertInFromRight && !self.animateAlertInFromBottom)
                     alertViewContents.transform = CGAffineTransformMakeScale(1.00, 1.00);
                 alertViewContents.frame = CGRectMake(alertViewFrame.origin.x,
                                                      alertViewFrame.origin.y,
@@ -1476,29 +1476,29 @@
     
     [UIView animateWithDuration:0.175 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
-        if (!_animateAlertOutToTop && !_animateAlertOutToLeft && !_animateAlertOutToRight && !_animateAlertOutToBottom) {
+        if (!self.animateAlertOutToTop && !self.animateAlertOutToLeft && !self.animateAlertOutToRight && !self.animateAlertOutToBottom) {
             self.alpha = 0;
             backgroundVisualEffectView.alpha = 0;
             alertViewContents.transform = CGAffineTransformMakeScale(0.9, 0.9);
         } else {
             
-            if (_bounceAnimations) {
-                if (_animateAlertOutToTop)
+            if (self.bounceAnimations) {
+                if (self.animateAlertOutToTop)
                     alertViewContents.frame = CGRectMake(alertViewFrame.origin.x,
                                                          alertViewFrame.origin.y + 7.5,
                                                          alertViewFrame.size.width,
                                                          alertViewFrame.size.height);
-                if (_animateAlertOutToRight)
+                if (self.animateAlertOutToRight)
                     alertViewContents.frame = CGRectMake(alertViewFrame.origin.x - 7.5,
                                                          alertViewFrame.origin.y,
                                                          alertViewFrame.size.width,
                                                          alertViewFrame.size.height);
-                if (_animateAlertOutToBottom)
+                if (self.animateAlertOutToBottom)
                     alertViewContents.frame = CGRectMake(alertViewFrame.origin.x,
                                                          alertViewFrame.origin.y - 7.5,
                                                          alertViewFrame.size.width,
                                                          alertViewFrame.size.height);
-                if (_animateAlertOutToLeft)
+                if (self.animateAlertOutToLeft)
                     alertViewContents.frame = CGRectMake(alertViewFrame.origin.x + 7.5,
                                                          alertViewFrame.origin.y,
                                                          alertViewFrame.size.width,
@@ -1507,22 +1507,22 @@
                 self.alpha = 0;
                 backgroundVisualEffectView.alpha = 0;
                 
-                if (_animateAlertOutToTop)
+                if (self.animateAlertOutToTop)
                     alertViewContents.frame = CGRectMake(alertViewFrame.origin.x,
                                                          0 - alertViewFrame.size.height - 15,
                                                          alertViewFrame.size.width,
                                                          alertViewFrame.size.height);
-                if (_animateAlertOutToRight)
+                if (self.animateAlertOutToRight)
                     alertViewContents.frame = CGRectMake(self.frame.size.width + alertViewFrame.size.width + 15,
                                                          alertViewFrame.origin.y,
                                                          alertViewFrame.size.width,
                                                          alertViewFrame.size.height);
-                if (_animateAlertOutToBottom)
+                if (self.animateAlertOutToBottom)
                     alertViewContents.frame = CGRectMake(alertViewFrame.origin.x,
                                                          self.frame.size.height + alertViewFrame.size.height + 15,
                                                          alertViewFrame.size.width,
                                                          alertViewFrame.size.height);
-                if (_animateAlertOutToLeft)
+                if (self.animateAlertOutToLeft)
                     alertViewContents.frame = CGRectMake(0 - alertViewFrame.size.width - 15,
                                                          alertViewFrame.origin.y,
                                                          alertViewFrame.size.width,
@@ -1532,7 +1532,7 @@
         
     } completion:^(BOOL finished) {
         
-        if (!_animateAlertOutToTop && !_animateAlertOutToLeft && !_animateAlertOutToRight && !_animateAlertOutToBottom) {
+        if (!self.animateAlertOutToTop && !self.animateAlertOutToLeft && !self.animateAlertOutToRight && !self.animateAlertOutToBottom) {
             id<FCAlertViewDelegate> strongDelegate = self.delegate;
             
             if ([strongDelegate respondsToSelector:@selector(FCAlertViewDismissed:)]) {
@@ -1542,28 +1542,28 @@
             [backgroundVisualEffectView removeFromSuperview];
             [self removeFromSuperview];
         } else {
-            if (_bounceAnimations) {
+            if (self.bounceAnimations) {
                 [UIView animateWithDuration:0.175 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                     
                     self.alpha = 0;
                     backgroundVisualEffectView.alpha = 0;
                     
-                    if (_animateAlertOutToTop)
+                    if (self.animateAlertOutToTop)
                         alertViewContents.frame = CGRectMake(alertViewFrame.origin.x,
                                                              0 - alertViewFrame.size.height - 15,
                                                              alertViewFrame.size.width,
                                                              alertViewFrame.size.height);
-                    if (_animateAlertOutToRight)
+                    if (self.animateAlertOutToRight)
                         alertViewContents.frame = CGRectMake(self.frame.size.width + alertViewFrame.size.width + 15,
                                                              alertViewFrame.origin.y,
                                                              alertViewFrame.size.width,
                                                              alertViewFrame.size.height);
-                    if (_animateAlertOutToBottom)
+                    if (self.animateAlertOutToBottom)
                         alertViewContents.frame = CGRectMake(alertViewFrame.origin.x,
                                                              self.frame.size.height + alertViewFrame.size.height + 15,
                                                              alertViewFrame.size.width,
                                                              alertViewFrame.size.height);
-                    if (_animateAlertOutToLeft)
+                    if (self.animateAlertOutToLeft)
                         alertViewContents.frame = CGRectMake(0 - alertViewFrame.size.width - 15,
                                                              alertViewFrame.origin.y,
                                                              alertViewFrame.size.width,
@@ -1607,7 +1607,7 @@
                                       @"action" : @0}];
     }
     
-    _numberOfButtons = alertButtons.count;
+    self.numberOfButtons = alertButtons.count;
     
 }
 
@@ -1665,8 +1665,8 @@
     
     // Return Rating from Rating Controller
     
-    if (_ratingBlock)
-        _ratingBlock(currentRating);
+    if (self.ratingBlock)
+        self.ratingBlock(currentRating);
     
     [self dismissAlertView];
     
@@ -1676,11 +1676,11 @@
 
 - (void) btnTouched {
     
-    if (_bounceAnimations) {
+    if (self.bounceAnimations) {
         
         [UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             self.alpha = 1;
-            if (_bounceAnimations)
+            if (self.bounceAnimations)
                 alertViewContents.transform = CGAffineTransformMakeScale(0.95, 0.95);
         }completion:nil];
         
@@ -1722,8 +1722,8 @@
     
     // Return Rating from Rating Controller
     
-    if (_ratingBlock)
-        _ratingBlock(currentRating);
+    if (self.ratingBlock)
+        self.ratingBlock(currentRating);
     
     [self dismissAlertView];
     
@@ -1731,7 +1731,7 @@
 
 - (void) btnReleased {
     
-    if (_bounceAnimations) {
+    if (self.bounceAnimations) {
         
         [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             alertViewContents.transform = CGAffineTransformMakeScale(1.05, 1.05);
@@ -1828,7 +1828,7 @@
         [self setActiveRating:currentRating];
     }
     
-    if (_bounceAnimations) {
+    if (self.bounceAnimations) {
         [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             item1.transform = CGAffineTransformMakeScale(0.9, 0.9);
         } completion:^(BOOL finished) {
@@ -1844,7 +1844,7 @@
     currentRating = 2;
     [self setActiveRating:currentRating];
     
-    if (_bounceAnimations) {
+    if (self.bounceAnimations) {
         [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             item2.transform = CGAffineTransformMakeScale(0.9, 0.9);
         } completion:^(BOOL finished) {
@@ -1859,7 +1859,7 @@
     currentRating = 3;
     [self setActiveRating:currentRating];
     
-    if (_bounceAnimations) {
+    if (self.bounceAnimations) {
         [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             item3.transform = CGAffineTransformMakeScale(0.9, 0.9);
         } completion:^(BOOL finished) {
@@ -1874,7 +1874,7 @@
     currentRating = 4;
     [self setActiveRating:currentRating];
     
-    if (_bounceAnimations) {
+    if (self.bounceAnimations) {
         [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             item4.transform = CGAffineTransformMakeScale(0.9, 0.9);
         } completion:^(BOOL finished) {
@@ -1889,7 +1889,7 @@
     currentRating = 5;
     [self setActiveRating:currentRating];
     
-    if (_bounceAnimations) {
+    if (self.bounceAnimations) {
         [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             item5.transform = CGAffineTransformMakeScale(0.9, 0.9);
         } completion:^(BOOL finished) {
