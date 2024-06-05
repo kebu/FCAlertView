@@ -1252,7 +1252,7 @@
     NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@",
                                [[NSBundle mainBundle] resourcePath], filename];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
-    self->player = [[AVAudioself->player alloc] initWithContentsOfURL:soundFileURL
+    self->player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL
                                                     error:nil];
     self->player.numberOfLoops = 0;
     
